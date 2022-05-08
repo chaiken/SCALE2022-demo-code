@@ -24,8 +24,8 @@
  *      inversion deadlock. With PI cond vars it works fine.
  *
  * USAGE:
- *      gcc -D_GNU_SOURCE -lpthread -lrt -ldl pthread_cond_hang.c \
- *      -o pthread_cond_hang
+ *      gcc -D_GNU_SOURCE pthread_cond_hang.c -o pthread_cond_hang \
+ *          -pthread -lrt -ldl
  *
  *      export LD_LIBRARY_PATH=path_to_libpthread.so_with_pi_cond_api
  *      ./pthread_cond_hang => WILL PASS (on SMP)
