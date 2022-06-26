@@ -18,6 +18,7 @@ for FILE in "$TLD"/*gz; do
         UNUSED="$(zgrep -i unused "${REALPATH}" | grep -v descriptor | grep -v pipe | grep -v address | grep -v unused_ | grep -v "Unused for")"
         UNSUPPORTED="$(zgrep -i unsupported "${REALPATH}")"
         UNWRAPPED="$(zgrep -i wrap "${REALPATH}" | grep  not | grep -v clone )"
+        FUTURE="$(zgrep -i future "${REALPATH}" | grep -i use)"
         FILENAME="${REALPATH%%.2.gz}"
         if  [[ -n "$UNUSED" ]] ; then
             echo "Unused in ${FILENAME}:"
@@ -30,6 +31,10 @@ for FILE in "$TLD"/*gz; do
         elif [[  -n "$UNWRAPPED" ]] ; then
             echo "Unwrapped in ${FILENAME}:"
             echo "$UNWRAPPED"
+            echo
+        elif [[  -n "$FUTURE" ]] ; then
+            echo "Future in ${FILENAME}:"
+            echo "$FUTURE"
             echo
         fi
     fi
